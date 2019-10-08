@@ -1,28 +1,98 @@
-# Very short description of the package
+# Connectwise PHP Client for Laravel
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/:package_name.svg?style=flat-square)](https://packagist.org/packages/spatie/:package_name)
-[![Build Status](https://img.shields.io/travis/spatie/:package_name/master.svg?style=flat-square)](https://travis-ci.org/spatie/:package_name)
-[![Quality Score](https://img.shields.io/scrutinizer/g/spatie/:package_name.svg?style=flat-square)](https://scrutinizer-ci.com/g/spatie/:package_name)
-[![Total Downloads](https://img.shields.io/packagist/dt/spatie/:package_name.svg?style=flat-square)](https://packagist.org/packages/spatie/:package_name)
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/acadea/connectwise-php.svg?style=flat-square)](https://packagist.org/packages/acadea/connectwise-php)
+[![Build Status](https://img.shields.io/travis/acadea/connectwise-php/master.svg?style=flat-square)](https://travis-ci.org/acadea/connectwise-php)
+[![Quality Score](https://img.shields.io/scrutinizer/g/acadea/connectwise-php.svg?style=flat-square)](https://scrutinizer-ci.com/g/acadea/connectwise-php)
+[![Total Downloads](https://img.shields.io/packagist/dt/acadea/connectwise-php.svg?style=flat-square)](https://packagist.org/packages/acadea/connectwise-php)
 
-**Note:** Replace ```:author_name``` ```:author_username``` ```:author_email``` ```:package_name``` ```:package_description``` with their correct values in [README.md](README.md), [CHANGELOG.md](CHANGELOG.md), [CONTRIBUTING.md](CONTRIBUTING.md), [LICENSE.md](LICENSE.md) and [composer.json](composer.json) files, then delete this line.
 
-This is where your description should go. Try and limit it to a paragraph or two. Consider adding a small example.
+Lightweight and Extensible Connectwise PHP client for Laravel 6.
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require spatie/:package_name
+composer require acadea/connectwise-php
+```
+
+Add the following env variable to .env
+
+```dotenv
+CW_COMPANY_ID=
+CW_PRIVATEKEY=
+CW_PUBLICKEY=
+
+# e.g https://api-au.myconnectwise.net/v4_6_release/apis/3.0/
+CW_API_VERSION_BASEURL=
+# you can find this at api addr : /v4_6_release/apis/3.0/system/info/locations
+CW_HOMEOFFICE_LOCATION=   
+CW_CLIENT_ID=
+
 ```
 
 ## Usage
 
-``` php
-$skeleton = new Spatie\Skeleton();
-echo $skeleton->echoPhrase('Hello, Spatie!');
+Easily use the API client. The request method returns a laravel Collection object. 
+
+```php
+
+ConnectwiseClient::request('get', 'company/companies');
+ConnectwiseClient::request('get', 'company/companies/1');
+ConnectwiseClient::request('post', 'company/companies', $payloadArray);
+ConnectwiseClient::request('patch', 'company/companies/1', $payloadArray);
+ConnectwiseClient::request('delete', 'company/companies/1');
+
 ```
+
+Or use the Connectwise Class. Conveniently preloaded with 'get', 'create', 'update', 'find', 'delete' and 'count' methods
+
+```php
+$cw = new Connectwise('company/companies');
+$collection = $cw->get([
+  'conditions'=> "identifier='XYZTestCompany'"
+])
+
+$collection = $cw->update( $id,
+  [
+      [
+          'op' => 'replace',
+          'path' => 'phoneNumber',
+          'value' => '054684321',
+      ],
+      [
+          'op'   => 'replace',
+          'path' => 'city',
+          'value' => 'heya',
+      ],
+  ]
+
+$collection = $cw->delete($id);
+
+$collection = $cw->find($id);
+
+$int = $cw->count($filter);
+
+```
+
+#### Extends the Connectwise class to create your own endpoint client
+
+Make sure to include the uri property to customise the endpoint. 
+```php
+use Acadea\Connectwise;
+
+class Company extends Connectwise
+{
+    protected $uri = "company/companies"
+
+    public function getInvoices()
+    {
+        // ....
+    }
+}
+
+```
+
 
 ### Testing
 
@@ -40,27 +110,22 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ### Security
 
-If you discover any security related issues, please email freek@spatie.be instead of using the issue tracker.
+If you discover any security related issues, please email hello@acadea.com.au instead of using the issue tracker.
 
-## Postcardware
-
-You're free to use this package, but if it makes it to your production environment we highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using.
-
-Our address is: Spatie, Samberstraat 69D, 2060 Antwerp, Belgium.
-
-We publish all received postcards [on our company website](https://spatie.be/en/opensource/postcards).
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
+- [Sam Ngu](https://github.com/sam-ngu)
 - [All Contributors](../../contributors)
 
-## Support us
+## About us
 
-Spatie is a webdesign agency based in Antwerp, Belgium. You'll find an overview of all our open source projects [on our website](https://spatie.be/opensource).
+Acadea is a technology-focused company based in Perth, Western Australia. Our primary focus is on web development and software integrations!
+On top of that we also teach people about technology and programming.
 
-Does your business depend on our contributions? Reach out and support us on [Patreon](https://www.patreon.com/spatie). 
-All pledges will be dedicated to allocating workforce on maintenance and new awesome stuff.
+##### [Visit our Website](https://acadea.com.au)
+
+##### [Contact us: hello@acadea.com.au](mailto:hello@acadea.com.au)
 
 ## License
 

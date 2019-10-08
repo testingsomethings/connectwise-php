@@ -1,35 +1,38 @@
 {
-    "name": "spatie/:package_name",
-    "description": ":package_description",
+    "name": "acadea/connectwise-php",
+    "description": "An extensible Connectwise API client for PHP / Laravel.",
     "keywords": [
-        "spatie",
-        ":package_name"
+        "acadea",
+        "connectwise-php"
     ],
-    "homepage": "https://github.com/spatie/:package_name",
+    "homepage": "https://github.com/acadea/connectwise-php",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": ":author_email",
-            "homepage": "https://spatie.be",
+            "name": "Sam Ngu",
+            "email": "hello@acadea.com.au",
+            "homepage": "https://acadea.com.au",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": "^7.3"
+        "php": ">=7.2",
+        "guzzlehttp/guzzle": "^6.3",
+        "illuminate/support": "~5.3|~6.0"
     },
     "require-dev": {
-        "symfony/var-dumper": "^4.3",
-        "phpunit/phpunit": "^8.2"
+        "orchestra/testbench": "^4.1",
+        "phpunit/phpunit": "^8.2",
+        "symfony/var-dumper": "^4.3"
     },
     "autoload": {
         "psr-4": {
-            "Spatie\\Skeleton\\": "src"
+            "Acadea\\Connectwise\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Spatie\\Skeleton\\Tests\\": "tests"
+            "Acadea\\Connectwise\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -43,10 +46,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Spatie\\Skeleton\\SkeletonServiceProvider"
+                "Acadea\\Connectwise\\ConnectwiseServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "Spatie\\Skeleton\\SkeletonFacade"
+                "ConnectwiseClient": "Acadea\\Connectwise\\Facades\\ConnectwiseClient"
             }
         }
     }
