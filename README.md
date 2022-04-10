@@ -1,5 +1,5 @@
 # Connectwise PHP Client for Laravel
-
+***USE THIS FORK AT YOUR OWN RISK. FOR EDUCATIONAL PURPOSES ONLY, NOT FOR PRODUCTION**
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/acadea/connectwise-php.svg?style=flat-square)](https://packagist.org/packages/acadea/connectwise-php)
 [![Build Status](https://img.shields.io/travis/acadea/connectwise-php/master.svg?style=flat-square)](https://travis-ci.org/acadea/connectwise-php)
 [![Quality Score](https://img.shields.io/scrutinizer/g/acadea/connectwise-php.svg?style=flat-square)](https://scrutinizer-ci.com/g/acadea/connectwise-php)
@@ -7,6 +7,7 @@
 
 
 Lightweight and Extensible Connectwise PHP client for Laravel 6.
+***USE THIS FORK AT YOUR OWN RISK. FOR EDUCATIONAL PURPOSES ONLY, NOT FOR PRODUCTION**
 
 ## Installation
 
@@ -130,3 +131,4 @@ On top of that we also teach people about technology and programming.
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+***USE THIS FORK AT YOUR OWN RISK. FOR EDUCATIONAL PURPOSES ONLY, NOT FOR PRODUCTION**
